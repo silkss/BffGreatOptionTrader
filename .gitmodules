@@ -1,0 +1,3 @@
+[submodule "BffConnectors"]
+	path = BffConnectors
+	url = https://github.com/silkss/BffConnectors.git
