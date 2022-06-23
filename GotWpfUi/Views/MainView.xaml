@@ -3,10 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GotWpfUi.Views"
+        xmlns:l="clr-namespace:GotWpfUi.Views"
+        xmlns:vm="clr-namespace:GotWpfUi.ViewModels"
+        xmlns:cmd="clr-namespace:GotWpfUi.Infrastructure.Commands"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="{Binding Title}" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="4"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="36"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <UniformGrid Columns="2" Rows="1" Grid.Row="0">
+            <Button Content="Connect" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=l:MainView}}">
+                <Button.Command>
+                    <cmd:ShowConnectViewCommand/>
+                </Button.Command>
+            </Button>
+            <Button Content="Disconnect"/>
+        </UniformGrid>
     </Grid>
 </Window>
